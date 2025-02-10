@@ -213,67 +213,88 @@ class Reviewer(Mentor):
         return f"Имя: {self.name}\nФамилия: {self.surname}"
 
  
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+student1 = Student('Andrea', 'Pirlo', 'male')
+student1.courses_in_progress += ['Python']
+student1.courses_in_progress += ['Git']
+student1.finished_courses += ['Введение в программирование']
 
-some_student = Student('Mike', 'Loui', 'your_gender')
-some_student.courses_in_progress += ['Python']
-some_student.courses_in_progress += ['Java']
+student2 = Student('Alisha', 'Lemman', 'female')
+student2.courses_in_progress += ['Python']
+student2.courses_in_progress += ['Java']
+student2.finished_courses += ['HTML', 'CSS']
  
-cool_reviewer = Reviewer('Some', 'Buddy')
-cool_reviewer.courses_attached += ['Python']
+reviewer1 = Reviewer('Alex', 'Sandro')
+reviewer1.courses_attached += ['Python']
+reviewer1.courses_attached += ['Java']
 
-cool_lecturer = Lecturer('Nicky', 'Butt')
-cool_lecturer.courses_attached += ['Python']
+reviewer2 = Reviewer('Alex', 'Sandro')
+reviewer2.courses_attached += ['Python']
+reviewer2.courses_attached += ['Git']
 
-some_lecturer = Lecturer('Alessandro', 'Del Piero')
-some_lecturer.courses_attached += ['Python']
+lecturer1 = Lecturer('Nicky', 'Butt')
+lecturer1.courses_attached += ['Python']
+lecturer1.courses_attached += ['Java']
+
+lecturer2 = Lecturer('Alessandro', 'Del Piero')
+lecturer2.courses_attached += ['Python']
+lecturer2.courses_attached += ['Git']
  
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 8)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+reviewer1.rate_hw(student1, 'Python', 10)
+reviewer1.rate_hw(student1, 'Python', 8)
 
-cool_reviewer.rate_hw(some_student, 'Python', 10)
-cool_reviewer.rate_hw(some_student, 'Python', 9)
-cool_reviewer.rate_hw(some_student, 'Python', 10)
+reviewer1.rate_hw(student2, 'Python', 10)
+reviewer1.rate_hw(student2, 'Java', 10)
 
-best_student.rate_hw(cool_lecturer, 'Python', 10)
-best_student.rate_hw(cool_lecturer, 'Python', 7)
-best_student.rate_hw(cool_lecturer, 'Python', 9)
+reviewer2.rate_hw(student1, 'Python', 9)
+reviewer2.rate_hw(student1, 'Git', 10)
 
-some_student.rate_hw(cool_lecturer, 'Python', 8)
-some_student.rate_hw(cool_lecturer, 'Python', 7)
+reviewer2.rate_hw(student2, 'Python', 9)
+reviewer2.rate_hw(student2, 'Python', 10)
 
-best_student.rate_hw(some_lecturer, 'Python', 10)
-best_student.rate_hw(some_lecturer, 'Python', 7)
-best_student.rate_hw(some_lecturer, 'Python', 9)
+student1.rate_hw(lecturer1, 'Python', 10)
+student1.rate_hw(lecturer1, 'Python', 7)
+student1.rate_hw(lecturer2, 'Python', 9)
+student1.rate_hw(lecturer2, 'Git', 8)
 
-some_student.rate_hw(some_lecturer, 'Python', 8)
-some_student.rate_hw(some_lecturer, 'Python', 7)
+student2.rate_hw(lecturer1, 'Python', 10)
+student2.rate_hw(lecturer1, 'Java', 7)
+student2.rate_hw(lecturer2, 'Python', 9)
+student2.rate_hw(lecturer2, 'Python', 8)
  
-# print(best_student.grades)
-# print(cool_lecturer.grades)
-# print(cool_reviewer)
-# print("--------------")
-# print(cool_lecturer)
-# print("--------------")
-# print(some_student)
-if best_student != some_student:
-    print("Оценки не равны")
-else:
-    print("Оценки равны")
+# print(student1.grades)
+# print(lecturer1.grades)
+print(reviewer1)
+print("--------------")
+print(lecturer2)
+print("--------------")
+print(student2)
+print("--------------")
+print("--------------")
 
-if best_student == some_student:
-    print("Оценки равны")
-else:
-    print("Оценки не равны")
+compare1 = "Оценки лучше" if student1 > student2 else "Оценки не лучше"
+compare2 = "Оценки не хуже" if student1 >= student2 else "Оценки хуже"
+compare3 = "Оценки равны" if student1 == student2 else "Оценки не равны"
+compare4 = "Оценки не лучше" if student1 <= student2 else "Оценки лучше"
+compare5 = "Оценки хуже" if student1 < student2 else "Оценки не хуже"
+compare6 = "Оценки не равны" if student1 != student2 else "Оценки равны"
+print(compare1)
+print(compare2)
+print(compare3)
+print(compare4)
+print(compare5)
+print(compare6)
+print("--------------")
+print("--------------")
 
-if best_student > some_student:
-    print("Оценки больше")
-else:
-    print("Оценки не больше")
-
-if best_student < some_student:
-    print("Оценки меньше")
-else:
-    print("Оценки не меньше")
+compare1 = "Оценки лучше" if lecturer1 > lecturer2 else "Оценки не лучше"
+compare2 = "Оценки не хуже" if lecturer1 >= lecturer2 else "Оценки хуже"
+compare3 = "Оценки равны" if lecturer1 == lecturer2 else "Оценки не равны"
+compare4 = "Оценки не лучше" if lecturer1 <= lecturer2 else "Оценки лучше"
+compare5 = "Оценки хуже" if lecturer1 < lecturer2 else "Оценки не хуже"
+compare6 = "Оценки не равны" if lecturer1 != lecturer2 else "Оценки равны"
+print(compare1)
+print(compare2)
+print(compare3)
+print(compare4)
+print(compare5)
+print(compare6)
