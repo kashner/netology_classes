@@ -212,6 +212,36 @@ class Reviewer(Mentor):
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}"
 
+
+def get_course_avg_st(studets_list, corse_names):
+        """Get average grade for home tasks per course"""
+        course_avg = {}
+        for student in studets_list:
+            if isinstance(student, Student):
+                course_avg[student.surname] = {}
+                for course in corse_names:
+                    for crs, gr in student.grades.items():
+                        if crs == course:
+                            if gr:
+                                avg = sum(gr) / len(gr)
+                                course_avg[student.surname][course] = round(avg,2)
+        return course_avg
+
+
+def get_course_avg_lc(lecturers_list, corse_names):
+        """Get average grade for lectures per course"""
+        course_avg = {}
+        for lecturer in lecturers_list:
+            if isinstance(lecturer, Lecturer):
+                course_avg[lecturer.surname] = {}
+                for course in corse_names:
+                    for crs, gr in lecturer.grades.items():
+                        if crs == course:
+                            if gr:
+                                avg = sum(gr) / len(gr)
+                                course_avg[lecturer.surname][course] = round(avg,2)
+        return course_avg
+
  
 student1 = Student('Andrea', 'Pirlo', 'male')
 student1.courses_in_progress += ['Python']
@@ -298,3 +328,14 @@ print(compare3)
 print(compare4)
 print(compare5)
 print(compare6)
+print("--------------")
+print("--------------")
+
+studets_list = [student1,student2,"student3"]
+corse_names = ["Git","Java","Python"]
+print(get_course_avg_st(studets_list, corse_names))
+print("--------------")
+
+lecturers_list = [lecturer1,lecturer2,"lecturer3"]
+corse_names = ["Git","Java","Python"]
+print(get_course_avg_lc(lecturers_list, corse_names))
