@@ -9,7 +9,11 @@ class Student:
         self.all_grades = []
         self.average = None
     
-    def rate_hw(self, lecturer, course, grade):
+    def rate_hw(self, lecturer, course, grade:int):
+        res = None
+        if 10 < grade or grade < 1:
+            res = print('Ошибка. Оценка должна быть от 1 до 10')
+            return res
         if isinstance(lecturer, Lecturer) and \
             course in self.courses_in_progress and \
             course in lecturer.courses_attached:
@@ -18,7 +22,8 @@ class Student:
             else:
                 lecturer.grades[course] = [grade]
         else:
-            return 'Ошибка'
+            res = print(f'Ошибка. {lecturer} не лектор')
+            return res
     
     def __str__(self):
         for value in self.grades.values():
@@ -199,6 +204,10 @@ class Reviewer(Mentor):
         super().__init__(name, surname)
         
     def rate_hw(self, student, course, grade):
+        res = None
+        if 10 < grade or grade < 1:
+            res = print('Ошибка. Оценка должна быть от 1 до 10')
+            return res
         if isinstance(student, Student) and \
             course in self.courses_attached and \
             course in student.courses_in_progress:
@@ -207,7 +216,8 @@ class Reviewer(Mentor):
             else:
                 student.grades[course] = [grade]
         else:
-            return 'Ошибка'
+            res = print(f'Ошибка. {student} не студент')
+            return res
     
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}"
@@ -242,6 +252,7 @@ def get_course_avg_lc(lecturers_list, corse_names):
                                 course_avg[lecturer.surname][course] = round(avg,2)
         return course_avg
 
+# =====================================================================================
  
 student1 = Student('Andrea', 'Pirlo', 'male')
 student1.courses_in_progress += ['Python']
@@ -281,7 +292,7 @@ reviewer2.rate_hw(student1, 'Git', 10)
 reviewer2.rate_hw(student2, 'Python', 9)
 reviewer2.rate_hw(student2, 'Python', 10)
 
-student1.rate_hw(lecturer1, 'Python', 10)
+student1.rate_hw(lecturer1, 'Python', 11)
 student1.rate_hw(lecturer1, 'Python', 7)
 student1.rate_hw(lecturer2, 'Python', 9)
 student1.rate_hw(lecturer2, 'Git', 8)
@@ -290,7 +301,10 @@ student2.rate_hw(lecturer1, 'Python', 10)
 student2.rate_hw(lecturer1, 'Java', 7)
 student2.rate_hw(lecturer2, 'Python', 9)
 student2.rate_hw(lecturer2, 'Python', 8)
- 
+
+print("--------------")
+print("--------------")
+
 # print(student1.grades)
 # print(lecturer1.grades)
 print(reviewer1)
